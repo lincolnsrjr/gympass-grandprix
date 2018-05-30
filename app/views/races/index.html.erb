@@ -1,0 +1,56 @@
+<%= render "layouts/navbar"%>
+
+<% if notice  %>
+  <script>
+    M.toast({html: '<%= notice %>', classes: 'rounded'});
+  </script>
+<% end %>
+
+<div class="container">
+
+  <div class="section">
+    <h5>Nova corrida</h5>
+     <%= form_tag races_create_path, multipart: true do |form| %>
+      <div class="row" style="margin-top: 30px;">
+        <div class='col s3'>
+            <div class="form-group">
+                <%= file_field_tag :file %>
+            </div>
+        </div>
+        <div class='col s6'>
+        </div>
+        <div class='col s3  right-align' style="margin-top: -10px;">
+          <%= submit_tag 'Enviar', class:"btn grey"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  
+  <div class="divider"></div>
+
+  <% if isnt_empty(@data) %>
+  <div class="section">
+    <h5>Corridas salvas</h5>
+    <table>
+        <thead>
+          <tr>
+              <th><%= t(:name) %></th>
+              <th class="right-align"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @data.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td class="right-align"><%= link_to 'Ver resultados', races_info_path(item), class:"btn btn-small grey"%></td>
+          </tr>
+        <% end %>          
+        </tbody>
+      </table>
+  </div>
+  <% end %>
+
+
+</div>

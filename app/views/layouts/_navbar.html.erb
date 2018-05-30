@@ -1,0 +1,14 @@
+<nav>
+    
+    <div class="white nav-wrapper">
+      <a href="/" style="color:#ff1530;  font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 28px; font-weight: 500;" class="brand-logo center">Gympass Grandprix</a>
+       <% if request.fullpath.include?("/corrida") %>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a style="color:#ff1530;  font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 18px; font-weight: 500;" href="/">Voltar</a></li>
+      </ul>
+      <% end %>
+
+    </div>
+</nav>

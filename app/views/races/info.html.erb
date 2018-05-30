@@ -1,0 +1,67 @@
+<%= render "layouts/navbar"%>
+
+
+  <div class="row">
+    <div class="col s12 m9">
+      <div class="card grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%= @data[:name] %></span>
+          <table>
+            <thead>
+              <tr>
+                  <th class="center-align"><%= t(:position) %></th>
+                  <th class="left-align"><%= t(:pilot) %></th>
+                  <th class="center-align"><%= t(:laps) %></th>
+                  <th class="center-align"><%= t(:total_time) %></th>
+                  <th class="center-align"><%= t(:best_lap) %></th>
+                  <th class="center-align"><%= t(:avarage_speed) %></th>
+                  <th class="center-align"><%= t(:diferente_to_first) %></th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <% @data[:pilot_results].each do |item| %>
+              <tr>
+                <td class="center-align"><%= item[:position] %>º</td>
+                <td class="left-align"><%= item[:pilot_number] %> - <%= item[:name] %></td>
+                <td class="center-align"><%= item[:atual_lap] %></td>
+                <td class="center-align"><%= mask_time(item[:total_time]) %></td>
+                <td class="center-align"><%= item[:best_lap_number] %>º <%= t(:lap) %> - <%= mask_time(item[:best_lap_time]) %></td>
+                <td class="center-align"><%= mask_speed(item[:average_speed]) %></td>
+                <td class="center-align"><%= mask_time(item[:diferente_to_first]) %> </td>
+              </tr>
+            <% end %>          
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="col s12">
+        <div class="card grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Melhor volta</span>
+              <%= "#{@data[:best_lap]}º #{t(:lap)} - #{@data[:best_lap_pilot]} - #{mask_time(@data[:best_lap_time])}"%>
+          </div>
+        </div>
+      </div>
+      <div class="col s12">
+        <div class="card grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Pilotos</span>
+            <table>
+              <tbody>
+              <% @data[:pilots].each do |item| %>
+                <tr>
+                  <td class=""><%= item[:pilot_number] %> - <%= item[:name] %></td>
+                </tr>
+              <% end %>          
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
